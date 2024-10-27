@@ -39,7 +39,7 @@ def degrees_within_miles(miles, origin, destination):
   return distance <= miles
 
 def pull_crimes(limit, offset):
-  result = requests.get(f"https://data.cityofchicago.org/resource/crimes.json?$limit={limit}&$offset={offset}&$order=id")
+  result = requests.get(f"https://data.cityofchicago.org/resource/crimes.json?$limit={limit}&$offset={offset}&$order=date")
   return [Crime(
       crime_id=crime["id"],
       case_number=crime["case_number"],
@@ -70,4 +70,3 @@ def pull_schools(limit, offset):
     latitude=school["school_latitude"],
     longitude=school["school_longitude"],
   ) for school in result.json()]
-
