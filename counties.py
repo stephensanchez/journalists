@@ -29,11 +29,12 @@ def get_counties():
 
 def print_out_bad_counties(file_name):
     counties = get_counties()
+    counties = counties[3154:]
     processed_counties = 0 # To keep track of script progress, we can count the number of counties we've processed.
     with open(file_name, "w") as report:
         writer = csv.writer(report, delimiter=',') # If we write to a file, we don't rely on the console to display the data.
         writer.writerow(["County", "Code", "Budget Not Found", "URL", "Error"])
-        time.sleep(2) # Sleep for 2 seconds to avoid rate limiting
+        time.sleep(1) # Sleep for 1 second to avoid rate limiting
         for county_and_code in counties:
             check_county(county_and_code, writer)
             processed_counties += 1 # Increment the processed counties.
